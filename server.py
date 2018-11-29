@@ -494,8 +494,13 @@ def add(uid, lid):
 
   tnumber = request.form['number']
   team = request.form['team']
-  cmd = 'INSERT INTO draft(number,team_name,fantasy_name,lid) VALUES (:num, :t, :f, :l)';
-  g.conn.execute(text(cmd), num = tnumber, t = team, f=fantasy_team, l=lid);
+  cmd1 = "DELETE FROM draft WHERE number=:num AND team_name=:t"
+  g.conn.execute(text(cmd1), num = tnumber, t = team);
+  cmd2 = "INSERT INTO draft(number,team_name,fantasy_name,lid) VALUES (:num, :t, :f, :l)"
+  #cmd = """WITH my_team_num AS (SELECT P.number FROM players_play as P, draft as D WHERE lid=:l and fantasy_name=:f and P.number=D.number and P.team_name=D.team_name),
+  #my_team_name AS (SELECT P.team_name FROM players_play as P, draft as D WHERE lid=:l and fantasy_name=:f and P.number=D.number and P.team_name=D.team_name)
+  #INSERT INTO draft(number,team_name,fantasy_name,lid) VALUES (:num, :t, :f, :l) WHERE :num NOT IN (SELECT * from my_team_num) AND :t NOT IN (SELECT * from my_team_name)""";
+  g.conn.execute(text(cmd2), num = tnumber, t = team, f=fantasy_team, l=lid);
   return myteam(uid,lid)
 
 # Remove player to my fantasy team

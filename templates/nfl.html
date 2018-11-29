@@ -33,22 +33,17 @@
         <tr><td>{{n}}</td><td>{{nfl_teams[n]}}</td> </tr>
       {% endfor %}
 
-  <form action="/teamstats/uid={{uid}}/lid={{lid}}">
-    <input type="submit" value="Team Stats" />
-  </form>
 
   <table style="width:100%">
       <tr>
+        <th>Coach</th>
+        <th>Position</th>
         <th>Team</th>
-        <th>Avg TD</th>
-        <th>Avg rush</th>
-        <th>Avg catch</th>
-        <th>Avg rush</th>
       </tr>
-      {% for n in nfl_teams %}
-        <tr><td>{{n}}</td><td>{{nfl_teams[n]}}</td> </tr>
+      {% for n in coaches %}
+        <tr><td>{{n}}</td><td>{{coaches[n][1]}}</td> <td>{{coaches[n][0]}}</td></tr>
       {% endfor %}
-  </table>
+
 
 </body>
 

@@ -230,7 +230,15 @@ def nfl(uid, lid):
     nfl_teams[result['name']] = result['location']
   cursor.close()
 
-  return render_template("nfl.html", uid=uid, lid=lid, nfl_teams=nfl_teams)
+  #get coaches
+  get_nfl = text("SELECT staff_name, position, team_name FROM staff_works")
+  cursor = g.conn.execute(get_nfl)
+  coaches = {}
+  for result in cursor:
+    coaches[result['staff_name']] = (result['team_name'], result['position'])
+  cursor.close()
+
+  return render_template("nfl.html", uid=uid, lid=lid, nfl_teams=nfl_teams, coaches = coaches)
 
 
 '''

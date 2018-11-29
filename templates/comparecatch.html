@@ -1,0 +1,102 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - Players</h1>
+
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <p></p>
+
+<form method="POST" action="/playerstats/uid={{uid}}/lid={{lid}}">
+  <p> Offensive Player Stats </p>
+  Number:<br>
+  <input type="int" name="number">
+  <br>
+  Team:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+  <form method="POST" action="/teamsplayers/uid={{uid}}/lid={{lid}}">
+  <p> NFL Team </p>
+  Team Name:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+  <div>
+
+    Name: {{name}}
+    Team: {{team}}
+    Number: {{number}}
+    <table style="width:100%">
+      <tr>
+        <th>Catching Avg</th>
+        <th>Rushing Avg</th>
+        <th>Passing Avg</th>
+        <th>TD Avg</th>
+      </tr>
+      <tr><td>{{stats[0]}}</td><td>{{stats[1]}}</td><td>{{stats[2]}}</td><td>{{stats[3]}}</td> </tr>
+  </table>
+
+  <form action="/comparetd/uid={{uid}}/lid={{lid}}">
+    <input type = "hidden" name = "number" value = {{number}} />
+    <input type = "hidden" name = "team" value = {{team}} />
+    <input type="submit" value="Best TD's" />
+  </form>
+
+  <form action="/comparepass/uid={{uid}}/lid={{lid}}">
+    <input type = "hidden" name = "number" value = {{number}} />
+    <input type = "hidden" name = "team" value = {{team}} />
+    <input type="submit" value="Most Passing" />
+  </form>
+
+  <form action="/comparecatch/uid={{uid}}/lid={{lid}}">
+    <input type = "hidden" name = "number" value = {{number}} />
+    <input type = "hidden" name = "team" value = {{team}} />
+    <input type="submit" value="Most Catching" />
+  </form>
+
+  <form action="/comparerush/uid={{uid}}/lid={{lid}}">
+    <input type = "hidden" name = "number" value = {{number}} />
+    <input type = "hidden" name = "team" value = {{team}} />
+    <input type="submit" value="Most Rushing" />
+  </form>
+
+  Best 5 - Catching
+  <table style="width:100%">
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Number</th>
+      <th>Catching Avg</th>
+    </tr>
+    {% for player in topstats %}
+      <tr><td>{{topstats[player][0]}}</td><td>{{player[0]}}</td><td>{{player[1]}}</td><td>{{topstats[player][1]}}</td> </tr>
+    {% endfor %}
+  </table>
+  </div>
+
+
+</body>
+
+
+</html>

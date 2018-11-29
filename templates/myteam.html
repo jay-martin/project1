@@ -1,0 +1,70 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - {{username}}'s Team</h1>
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <a href="/nfl/uid={{uid}}/lid={{lid}}">NFL Teams</a>
+
+  <p></p>
+
+  <div>
+
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Number</th>
+      </tr>
+      {% for n in names %}
+        <tr><td>{{n}}</td> </tr>
+      {% endfor %}
+      {% for n in player_dict %}
+        <tr><td>{{player_dict[n]}} <td>{{n[1]}}</td> <td>{{n[0]}}</td> </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+
+<form method="POST" action="/add/uid={{uid}}/lid={{lid}}">
+  <p> Add Player </p>
+  Number:<br>
+  <input type="int" name="number">
+  <br>
+  Team:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<form method="POST" action="/remove/uid={{uid}}/lid={{lid}}">
+  <p> Remove Player </p>
+  Number:<br>
+  <input type="int" name="number">
+  <br>
+  Team:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+
+
+</html>

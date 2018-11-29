@@ -1,0 +1,36 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - Welcome {{username}}</h1>
+
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <a href="/nfl/uid={{uid}}/lid={{lid}}">NFL Teams</a>
+  <p></p>
+
+  <h2> Team {{fantasy_team}}</h2>
+  <h3> Record : {{wins}}-{{losses}} </h3>
+  
+  <div>
+  </div>
+
+</body>
+
+
+</html>

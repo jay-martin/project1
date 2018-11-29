@@ -1,0 +1,45 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - League</h1>
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <a href="/nfl/uid={{uid}}/lid={{lid}}">NFL Teams</a>
+  <p></p>
+  My Team: {{fantasy_team}}
+
+  <div>
+
+    <table style="width:100%">
+      <tr>
+        <th>Team</th>
+        <th>Wins</th>
+        <th>Losses</th>
+      {% for n in team %}
+        <tr><td>{{n}} <td>{{team[n][0]}}</td> <td>{{team[n][1]}}</td> </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+
+
+</body>
+
+
+</html>

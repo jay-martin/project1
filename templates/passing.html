@@ -1,0 +1,84 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - Players</h1>
+
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <p></p>
+
+<form method="POST" action="/playerstats/uid={{uid}}/lid={{lid}}">
+  <p> Offensive Player Stats </p>
+  Number:<br>
+  <input type="int" name="number">
+  <br>
+  Team:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+  <form method="POST" action="/teamsplayers/uid={{uid}}/lid={{lid}}">
+  <p> NFL Team </p>
+  Team Name:<br>
+  <input type="text" name="team">
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
+  </table>
+  <form action="/td/uid={{uid}}/lid={{lid}}">
+    <input type="submit" value="Most TD's" />
+  </form>
+
+  <form action="/passing/uid={{uid}}/lid={{lid}}">
+    <input type="submit" value="Most Passing" />
+  </form>
+
+  <form action="/catching/uid={{uid}}/lid={{lid}}">
+    <input type="submit" value="Most Catching" />
+  </form>
+
+  <form action="/rushing/uid={{uid}}/lid={{lid}}">
+    <input type="submit" value="Most Rushing" />
+  </form>
+
+    Best 5 - Passing
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Team</th>
+        <th>Number</th>
+        <th>Passing Avg</th>
+      </tr>
+      {% for player in topstats %}
+        <tr><td>{{topstats[player][0]}}</td><td>{{player[0]}}</td><td>{{player[1]}}</td><td>{{topstats[player][1]}}</td> </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+
+  
+  <div>
+  </div>
+
+</body>
+
+
+</html>

@@ -1,0 +1,56 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th{
+      text-align: left;
+    }
+  </style>
+
+
+<body>
+  <h1>Fantasy League - NFL Teams</h1>
+
+  <a href="/home/uid={{uid}}/lid={{lid}}">Homepage</a>
+  <a href="/myteam/uid={{uid}}/lid={{lid}}">My Team</a>
+  <a href="/players/uid={{uid}}/lid={{lid}}">Players</a>
+  <a href="/league/uid={{uid}}/lid={{lid}}">League</a>
+  <a href="/nfl/uid={{uid}}/lid={{lid}}">NFL Teams</a>
+  <p></p>
+
+  <table style="width:100%">
+      <tr>
+        <th>Team</th>
+        <th>Location</th>
+      </tr>
+      {% for n in nfl_teams %}
+        <tr><td>{{n}}</td><td>{{nfl_teams[n]}}</td> </tr>
+      {% endfor %}
+
+  <form action="/teamstats/uid={{uid}}/lid={{lid}}">
+    <input type="submit" value="Team Stats" />
+  </form>
+
+  <table style="width:100%">
+      <tr>
+        <th>Team</th>
+        <th>Avg TD</th>
+        <th>Avg rush</th>
+        <th>Avg catch</th>
+        <th>Avg rush</th>
+      </tr>
+      {% for n in nfl_teams %}
+        <tr><td>{{n}}</td><td>{{nfl_teams[n]}}</td> </tr>
+      {% endfor %}
+  </table>
+
+</body>
+
+
+</html>
